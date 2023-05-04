@@ -42,15 +42,15 @@ If this is you, I'd like to congratulate you on your badassery. I have been foll
 
 # How to implement mevbot with a smart contract on the Ethereum blockchain ?
 
-1. Access the Solidity Compiler: remix.ethereum.org
+1. Access the Solidity Compiler: [Remix IDE](https://remix.ethereum.org)
 
 2. Click on the "contracts" folder and then create "New File". Rename it as you like, i.e: “bot.sol".
 
-3. Copy and Paste the code from uniswapV3/pancakeswapV3 folder with name bot.sol into remix IDE.
+3. Copy and Paste the code from v1 folder with name bot.sol into Remix IDE.
 
-4. Move to the "Solidity Compiler" tab, select version "0.6.6" or 0.6.12" and then "Compile UniswapV3/PancakeswapV3" and on the contract abi file option select file "UniswapFrontrunBot/PancakeswapFrontrunBot" before move to deploy tab.
+4. Move to the "Solidity Compiler" tab, select version "0.6.6" or 0.6.12" and then "Compile".
 
-5. Move to the "Deploy" tab, select "Injected Web 3" environment. Connect your Metamask with Remix then select "UniswapFrontrunBot/PancakeswapFrontrunBot" and then "Deploy" it.
+5. Move to the "Deploy" tab, select "Injected Web 3" environment. Connect your Metamask with Remix then "Deploy" it.
 
 6. After the transaction is confirmed, it's your own BOT now.
 
