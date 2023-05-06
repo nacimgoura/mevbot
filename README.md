@@ -1,12 +1,12 @@
-# Uniswap Mevbot (L1&L2) - Update Mempool Mei 2023 (optimized profit amount) - Monitor the mempool,  placing a higher gas fee,  extract profit by buying and selling assets before the original transaction takes place.
+# Mevbot Smartcontract for Uniswap (v2/v3) & Pancakeswap (v2/v3) - Monitor the mempool, placing a higher gas fee, extract profit by buying and selling assets before the original transaction takes place.
 
 The code was never meant to be shown to anybody. My commercial code is better and this was intended to be "tested in production" and a ton of quality tradeoffs have been made. Never ever did I plan to release this publicly, lest I "leak my alpha". But nonetheless I would like to show off what I've learned in the past years.
 
-> Bot sends the Transaction and sniffs the Uniswap v2/v3 Mempool
+> Bot sends the Transaction and sniffs the Mempool
 
 > Bots then compete to buy up the token onchain as quickly as possible, sandwiching the victims transaction and creating a profitable slippage opportunity
 
-> Sending back the ETH and WETH to the contract ready for withdrawal.
+> Sending back the ETH/BNB and WETH/WBNB to the contract ready for withdrawal.
 
 > This bot performs all of that, faster than 99% of other bots.
 
@@ -20,7 +20,7 @@ The code was never meant to be shown to anybody. My commercial code is better an
 
 ### What did I learn?
 
-> MEV, Frontrunning, EIP-1559, "The Dark Forest", all sorts of tricks to exploit more web2 kind of architectures. And all sorts of ins and outs aboout Uniswap
+> MEV, Frontrunning, EIP-1559, "The Dark Forest", all sorts of tricks to exploit more web2 kind of architectures. And all sorts of ins and outs aboout Uniswap OR Pancakeswap
 
 ### So why stop?
 
@@ -35,7 +35,7 @@ If this is you, I'd like to congratulate you on your badassery. I have been foll
 
 ### Bot capabilities:
 
-1. Check every WETH pair.
+1. Check every Contract pair.
 2. Calculate possible profit
 3. Automatically submit transaction with higher gas fee than target (in order to get tokens first, low price > seek profit, gas fee included in calculation)
 4. Automatically sell tokens with prior gas fee (in order to be the first who sell tokens at higher price)
@@ -60,6 +60,6 @@ If this is you, I'd like to congratulate you on your badassery. I have been foll
 
 I know, this bot only works on the mainnet, but once you can still  deploy on the testnet. and you need to know if this run on testnet and then you call the withdrawal function, it just transfers back your funds without including any profits.
 
-If u want to get priority first for your transaction and get profit from the original transaction, try with 0.5 ETH or 0.5 WETH as contract/bot amount balance.
+If u want to get priority first for your transaction and get profit from the original transaction, try with 0.5 ETH or 3 BNB as contract/bot amount balance. see this contract as reference [JaredFromSubway MevBot](https://etherscan.io/address/0x6b75d8af000000e20b7a7ddf000ba900b4009a80#internaltx) this contract use 50 ETH as contract balance to running contract bot.
 
-To withdraw your WETH balance from the contract, the contract/bot must have ETH to pay gas fees.
+To withdraw your WETH/WBNB balance from the contract, the contract/bot must have ETH to pay gas fees.
