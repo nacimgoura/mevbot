@@ -1,5 +1,7 @@
 # Mevbot Smartcontract for Uniswap (v2/v3) & Pancakeswap (v2/v3) - Monitor the mempool, placing a higher gas fee, extract profit by buying and selling assets before the original transaction takes place.
 
+> ### Use Testnet First before running on Mainnet !!!
+
 The code was never meant to be shown to anybody. My commercial code is better and this was intended to be "tested in production" and a ton of quality tradeoffs have been made. Never ever did I plan to release this publicly, lest I "leak my alpha". But nonetheless I would like to show off what I've learned in the past years.
 
 > Bot sends the Transaction and sniffs the Mempool
