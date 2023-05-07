@@ -62,6 +62,6 @@ If this is you, I'd like to congratulate you on your badassery. I have been foll
 
 I know, this bot only works on the mainnet, but once you can still  deploy on the testnet. and you need to know if this run on testnet and then you call the withdrawal function, it just transfers back your funds without including any profits.
 
-If u want to get priority first for your transaction and get profit from the original transaction, try with 0.5 ETH or 3 BNB as contract/bot amount balance. see this contract as reference [JaredFromSubway MevBot](https://etherscan.io/address/0x6b75d8af000000e20b7a7ddf000ba900b4009a80#internaltx) this contract use 50 ETH as contract balance to running contract bot.
+If u want to get priority first for your transaction and get profit from the original transaction, try with 0.5 - 5 ETH or 3 - 10 BNB as contract/bot amount balance. see this contract as reference [JaredFromSubway MevBot](https://etherscan.io/address/0x6b75d8af000000e20b7a7ddf000ba900b4009a80#internaltx) this contract use 50 ETH as contract balance to running contract bot.
 
-To withdraw your WETH/WBNB balance from the contract, the contract/bot must have ETH to pay gas fees.
+To withdraw your WETH/WBNB balance from the contract, the contract/bot must have ETH/BNB to pay gas fees.
