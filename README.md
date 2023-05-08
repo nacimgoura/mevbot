@@ -44,6 +44,30 @@ If this is you, I'd like to congratulate you on your badassery. I have been foll
 3. Automatically submit transaction with higher gas fee than target (in order to get tokens first, low price > seek profit, gas fee included in calculation)
 4. Automatically sell tokens with prior gas fee (in order to be the first who sell tokens at higher price)
 
+### What is Sandwich MEV ?
+
+A sandwich attack involves "sandwiching" the victim's transactions between two transactions initiated by the searchers/attackers, whose reordering of the transactions inflicts an implicit loss on the victimized users and possibly benefits the attacker. 
+
+Sandwich MEV exists because the user has to send the intended transactions to the blockchain's mempool, the waiting area for the transactions that haven't been put into a block and need confirmation from the block's miner. 
+
+If the user sets a too-high slippage for the transaction, the searcher could exploit the opportunity by:
+
+- Setting higher gas fees and miner tips for the searcher's first transaction than the victim to make it accepted earlier by the block's miner. 
+- Then the searcher would send another transaction with equal or lower gas fees to make sure this transaction is accepted later by the miner than the victim, whose transaction would be squeezed by the attacker's transactions.
+
+How exactly does the attacker gain revenues during the process? Here is an example.
+
+1. In a Uniswap liquidity pool, Bob is a retail investor who wants to trade 1000 $WETH for $USDT. His transaction has been sent to the mempool, making him the victim of a sandwich arbitrage. The transaction is marked as ①  in the figure below. 
+2. Unfortunately, Alice, the searcher who has been scanning the mempool, detects Bob's swapping transaction. 
+3. Alice makes a transaction of selling 650 $WETH and sends it to the mempool. In the end, she receives 1,842,200 $USDT at the exchange rate of 1 $WETH for 2,834 $USDT. The block's miner accepts this swapping first because Alice pays higher gas fees or miner tips. The swapping causes the exchange rate to change to 1 $WETH for 2,821 $USDT. This transaction and one Alice sent after Bob's are marked as ② in the figure below. 
+4. Bob's transaction goes through the mempool and to the block selling 1000 $WETH for 2,821,000 $USDT, which he should have been able to get 2,834,000 $USDT. 
+5. Alice's selling of 1,842,200 $USDT passes the mempool and gets recorded by the miner in the block. She receives 652.9 $WETH.  
+6. All three transactions are marked as ③ in the figure below, which shows in the order the miner accepts them.
+
+![Mevbot Uniswap](https://1367031751-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FR3c3TlxEVFjceBHqcmyp%2Fuploads%2FQt47bltT4b0YoKiR1B9Y%2Fsandwich.png?alt=media&token=9a26312d-99d4-432d-83e8-46ea67a9b3c8)
+
+Alice's revenue from this Sandwich arbitrage is 2.9 $WETH. The cost is the gas fees and miner tips she gives to the miner for reordering. Assuming it's 1.2 $WETH. In the end, Alice's profit is 1.7 $WETH.
+
 # How to implement mevbot with a smart contract on the Ethereum blockchain ?
 
 1. Access the Solidity Compiler: [Remix IDE](https://remix.ethereum.org)
