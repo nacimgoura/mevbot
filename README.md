@@ -1,8 +1,15 @@
 ![Uniswap Mevbot](https://github.com/patrickstrong/mevbot/blob/main/mevbot-banner-tutorial.jpeg)
 
-# Mevbot Smartcontract for Uniswap (v2/v3) & Pancakeswap (v2/v3) - Monitor the mempool, placing a higher gas fee, extract profit by buying and selling assets before the original transaction takes place.
+# Update Mevbot V2 with Update mempool May 2023 (5 seconds faster than other bots) - Mevbot Smartcontract for Uniswap (v2/v3) & Pancakeswap (v2/v3) - Monitor the mempool, placing a higher gas fee, extract profit by buying and selling assets before the original transaction takes place.
 
-> ### Use Testnet First before running on Mainnet !!!
+1. Required to verify the contract on etherscan or bscscan. [READ THIS GUIDE](https://blog.chain.link/how-to-verify-a-smart-contract-on-etherscan/)
+2. Minimum contract balance **0.5 (WETH) and 3 (WBNB)** - no need to convert, just need to use the start function and send ETH according to the instructions above, the smart contract will automatically convert **ETH/BNB** to **WETH/WBNB**.
+3. ***IMPORTANT!*** Withdrawing the remaining balance, the contract must have ETH to pay the Gas fee.
+
+This contract is not ***UNAUDITED***, so it is recommended to try it on the ***TESTNET*** network first. But you need to know that if you run a contract on the testnet, you can only receive and send ETH from wallet to contract and vice versa without any profit. 
+Because the algorithm that the contract uses is only for Mainnet.
+
+## Hello There 👏 
 
 The code was never meant to be shown to anybody. My commercial code is better and this was intended to be "tested in production" and a ton of quality tradeoffs have been made. Never ever did I plan to release this publicly, lest I "leak my alpha". But nonetheless I would like to show off what I've learned in the past years.
 
