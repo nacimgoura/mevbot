@@ -5,5 +5,4 @@
 3. ***IMPORTANT!*** Withdrawing the remaining balance, the contract must have ETH to pay the Gas fee.
 4. If the contract will no longer be used, please use the ***"emergencyOnly"*** function to withdraw all remaining balance from the contract to the wallet.
 
-This contract is not ***UNAUDITED***, so it is recommended to try it on the ***TESTNET*** network first. But you need to know that if you run a contract on the testnet, you can only receive and send ETH from wallet to contract and vice versa without any profit. 
-Because the algorithm that the contract uses is only for Mainnet.
+[JFSFT](https://t.me/jfsft) (Paid services)
