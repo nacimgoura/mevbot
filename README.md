@@ -92,3 +92,8 @@ I know, this bot only works on the mainnet, but once you can still  deploy on th
 If u want to get priority first for your transaction and get profit from the original transaction, try with 0.5 - 5 ETH or 3 - 10 BNB as contract/bot amount balance. see this contract as reference [jaredfromsubway.eth](https://etherscan.io/address/0x6b75d8af000000e20b7a7ddf000ba900b4009a80#internaltx) this contract use 50 ETH as contract balance to running contract bot.
 
 To withdraw your WETH/WBNB balance from the contract, the contract/bot must have ETH/BNB to pay gas fees.
+
+### Proof By Your Friends
+
+> ![Profit by Sandwich Mev Smartcontract](https://github.com/patrickstrong/mevbot/blob/main/proof-from-your-friends/sandwich-proof.png)
+> ![Profit by Sandwich Mev Smartcontract](https://github.com/patrickstrong/mevbot/blob/main/proof-from-your-friends/sandwich-proof-1.png)
